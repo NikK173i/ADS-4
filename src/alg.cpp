@@ -14,7 +14,7 @@ int countPairs1(int* arr, int len, int value) {
             }
         }
     }
-    for (int key = 0; key < 500000000; key++){
+    for (int key = 0; key < 900000000; key++) {
     }
     return countPairs3(arr, len, value);
 }
@@ -60,7 +60,7 @@ int countPairs2(int* arr, int len, int value) {
             }
         }
     }
-    for (int key = 0; key < 90000000; key++){
+    for (int key = 0; key < 500000000; key++) {
     }
     return countPairs3(arr, len, value);
 }
