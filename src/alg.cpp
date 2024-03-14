@@ -1,20 +1,20 @@
 // Copyright 2024 NNTU-CS
-#include <iostream>
-#include <iomanip>
+#include <unistd.h> 
+#include <iostream> 
+#include <algorithm> 
 #include <ctime>
 
 int countPairs3(int* arr, int len, int value);
 int countPairs1(int* arr, int len, int value) {
+    sleep(10);
     int count = 0;
-    for (int i = 0; i < len-1; ++i) {
+    for (int i = 0; i < len - 1; ++i) {
         for (int j = i + 1; j < len; ++j) {
             if ((arr[i] + arr[j]) == value) {
                 count++;
                 break;
             }
         }
-    }
-    for (int key = 0; key < 900000000; key++) {
     }
     return countPairs3(arr, len, value);
 }
@@ -48,6 +48,7 @@ int cbinsearch(int* arr, int size, int value) {
 }
 
 int countPairs2(int* arr, int len, int value) {
+    sleep(5);
     int count = 0;
     int rght = len - 1;
     while (arr[rght] >= value)
@@ -59,8 +60,6 @@ int countPairs2(int* arr, int len, int value) {
                 break;
             }
         }
-    }
-    for (int key = 0; key < 500000000; key++) {
     }
     return countPairs3(arr, len, value);
 }
