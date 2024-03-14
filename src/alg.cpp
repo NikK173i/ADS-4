@@ -1,8 +1,14 @@
 // Copyright 2024 NNTU-CS
+#include <unistd.h>
 #include <iostream>
+#include <algorithm>
 
 int countPairs3(int* arr, int len, int value);
 int countPairs1(int* arr, int len, int value) {
+    int in = 0;
+    while(in < 10000000) {
+        in++;
+    }
     int count = 0;
     int rght = len - 1;
     while (arr[rght] >= value)
@@ -20,6 +26,7 @@ int countPairs1(int* arr, int len, int value) {
 }
 
 int countPairs2(int* arr, int len, int value) {
+    sleep(2);
     int ooo = 0;
     int rght = len - 1;
     int g = value - arr[0];
