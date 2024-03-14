@@ -1,53 +1,69 @@
 // Copyright 2024 NNTU-CS
-#include <unistd.h>
 #include <iostream>
-#include <algorithm>
+#include <iomanip>
+#include <ctime>
 
-int countPairs3(int *arr, int len, int value);
-int cbinsearch(int* arr, int size, int value) {
-    if (size == 0) return 0;
-    if (arr[size / 2] == value) return value;
-    if (arr[size / 2] > value) return cbinsearch(arr, size / 2, value);
-    if (arr[size / 2] < value) return cbinsearch(arr + size / 2, size / 2, value);
+int countPairs3(int* arr, int len, int value);
+int countPairs1(int* arr, int len, int value) {
+    int count = 0;
+    for (int i = 0; i < len - 1; ++i) {
+        for (int j = i + 1; j < len; ++j) {
+            if ((arr[i] + arr[j]) == value) {
+                count++;
+            }
+        }
+    }
+    if (count)
+        return count;
     return 0;
 }
- 
-int countPairs1(int *arr, int len, int value) {
-    sleep(6);
+
+int countPairs2(int* arr, int len, int value) {
     int count = 0;
-    std::sort(arr, arr+len);
-    for (int i = 0; i < len - 1; i++) {
-        for (int j = i + 1; j < len; j++) {
-            if (arr[i] + arr[j] == value) count++;
+    int rght = len - 1;
+    while (arr[rght] >= value)
+        rght--;
+    for (int i = 0; i < rght; ++i) {
+        for (int j = rght; j > i; --j) {
+            if ((arr[i] + arr[j]) == value) {
+                count++;
+            }
         }
     }
-    return countPairs3(arr, len, value);
+    if (count)
+        return count;
+    return 0;
 }
 
-int countPairs2(int *arr, int len, int value) {
-    std::sort(arr, arr + len);
-    sleep(2);
+int countPairs3(int* arr, int len, int value) {
     int count = 0;
-    for (int i = 0; i < len - 1; i++) {
-        for (int j = len - 1; j > i; j--) {
-            if (arr[i] + arr[j] == value) count++;
-            if (arr[i] + arr[j] > value) {
-                len--;
-            }
-            if (arr[i] + arr[j] < value) {
+    int lft = 0;
+    int rght = len - 1;
+    for (int i = 0; i < len; ++i) {
+        int SecVal = value - arr[i];
+        while (lft <= rght) {
+            int middle = (lft + rght) / 2;
+            if (arr[middle] == SecVal) {
+                count++;
+                int p = middle - 1;
+                while (p >= 0 && arr[p] == value) {
+                    count++;
+                    p--;
+                }
+                p = middle + 1;
+                while (p < len && arr[p] == value) {
+                    count++;
+                    p++;
+                }
                 break;
+            } else if (arr[middle] > value) {
+                rght = middle - 1;
+            } else {
+                lft = middle + 1;
             }
         }
     }
-    return countPairs3(arr, len, value);
-}
-
-int countPairs3(int *arr, int len, int value) {
-    std::sort(arr, arr + len);
-    int count = 0;
-    for (int i = 0; i < len - 1; i++) {
-        int secVal = value - arr[i];
-        if (secVal == cbinsearch(arr + i + 1, len - 1 - i, secVal)) count++;
-    }
-    return count;
+    if (count)
+        return count;
+    return 0;
 }
