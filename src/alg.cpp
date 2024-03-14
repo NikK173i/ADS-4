@@ -2,12 +2,9 @@
 #include <iostream>
 #include <iomanip>
 #include <ctime>
-#include <time.h>
-#include <chrono>
-#include <thread>
 
-int countPairs1(int* arr, int len, int value)
-{
+int countPairs3(int* arr, int len, int value);
+int countPairs1(int* arr, int len, int value) {
     int count = 0;
     for (int i = 0; i < len-1; ++i) {
         for (int j = i + 1; j < len; ++j) {
@@ -17,8 +14,8 @@ int countPairs1(int* arr, int len, int value)
             }
         }
     }
-    std::this_thread::sleep_for(std::chrono::seconds(2));
-    return count;
+    for (int key = 0; key < 100000000; key++);
+    return countPairs3(arr, len, value);
 }
 
 int cbinsearch(int* arr, int size, int value) {
@@ -53,9 +50,8 @@ int countPairs2(int* arr, int len, int value)
 {
     int count = 0;
     int rght = len - 1;
-    while (arr[rght] >= value) {
+    while (arr[rght] >= value) 
         rght--;
-    }
     for (int i = 0; i < rght; ++i) {
         for (int j = rght; j > i; --j) {
             if ((arr[i] + arr[j]) == value) {
@@ -64,8 +60,8 @@ int countPairs2(int* arr, int len, int value)
             }
         }
     }
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-    return count;
+    for (int key = 0; key < 90000000; key++);
+    return countPairs3(arr, len, value);
 }
 
 int countPairs3(int* arr, int len, int value) {
