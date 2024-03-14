@@ -41,12 +41,12 @@ int countPairs3(int* arr, int len, int value) {
             if (arr[middle] == SecVal) {
                 count++;
                 int p = middle - 1;
-                while ((p > i) && (arr[p] == value)) {
+                while ((p > i) && (arr[p] == arr[middle])) {
                     count++;
                     p--;
                 }
                 int p2 = middle + 1;
-                while ((i < p2) && (arr[p2] == value)) {
+                while ((i < p2) && (arr[p2] == arr[middle])) {
                     count++;
                     p2++;
                 }
