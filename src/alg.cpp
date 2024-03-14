@@ -12,7 +12,7 @@ int cbinsearch(int* arr, int size, int value) {
     return 0;
 }
  
-int countPairs1(int *arr, int len, int value) { 
+int countPairs1(int *arr, int len, int value) {
     sleep(6);
     int count = 0;
     std::sort(arr, arr+len);
@@ -24,7 +24,7 @@ int countPairs1(int *arr, int len, int value) {
     return countPairs3(arr, len, value);
 }
 
-int countPairs2(int *arr, int len, int value) { 
+int countPairs2(int *arr, int len, int value) {
     std::sort(arr, arr + len);
     sleep(2);
     int count = 0;
@@ -43,11 +43,11 @@ int countPairs2(int *arr, int len, int value) {
 }
 
 int countPairs3(int *arr, int len, int value) {
-    std::sort(arr, arr + len); 
-    int count = 0; 
-    for (int i = 0; i < len - 1; i++) { 
-        int secVal = value - arr[i]; 
-        if (secVal == cbinsearch(arr + i + 1, len - 1 - i, secVal)) count++; 
-    } 
-    return count; 
+    std::sort(arr, arr + len);
+    int count = 0;
+    for (int i = 0; i < len - 1; i++) {
+        int secVal = value - arr[i];
+        if (secVal == cbinsearch(arr + i + 1, len - 1 - i, secVal)) count++;
+    }
+    return count;
 }
