@@ -36,30 +36,30 @@ int countPairs2(int* arr, int len, int value) {
 
 int countPairs3(int* arr, int len, int value) {
     int count = 0;
-    int lft = 0;
-    int rght = len - 1;
+    int lft;
+    int rght, middle;
     for (int i = 0; i < len; ++i) {
+        rght = len - 1;
+        lft = i + 1;
         int SecVal = value - arr[i];
         while (lft <= rght) {
-            int middle = (lft + rght) / 2;
+            middle = (lft + rght) / 2;
             if (arr[middle] == SecVal) {
                 count++;
                 int p = middle - 1;
-                while (p >= 0 && arr[p] == value) {
+                while (p > i && arr[p] == value) {
                     count++;
                     p--;
                 }
                 int p2 = middle + 1;
-                while (p2 < len && arr[p2] == value) {
+                while (i < p2 && arr[p2] == value) {
                     count++;
                     p2++;
                 }
                 break;
-            }
-            else if (arr[middle] > value) {
+            } else if (arr[middle] > SecVal) {
                 rght = middle - 1;
-            }
-            else {
+            } else {
                 lft = middle + 1;
             }
         }
