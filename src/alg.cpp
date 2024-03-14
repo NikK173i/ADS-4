@@ -6,7 +6,7 @@
 int countPairs3(int* arr, int len, int value);
 int countPairs1(int* arr, int len, int value) {
     int in = 0;
-    while(in < 10000000) {
+    while (in < 10000000) {
         in++;
     }
     int count = 0;
