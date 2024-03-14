@@ -1,11 +1,12 @@
 // Copyright 2024 NNTU-CS
 #include <iostream>
-#include <iomanip>
-#include <ctime>
 
 int countPairs3(int* arr, int len, int value);
 int countPairs1(int* arr, int len, int value) {
     int count = 0;
+    int rght = len - 1;
+    while (arr[rght] >= value)
+        rght--;
     for (int i = 0; i < len - 1; ++i) {
         for (int j = i + 1; j < len; ++j) {
             if ((arr[i] + arr[j]) == value) {
@@ -21,7 +22,7 @@ int countPairs1(int* arr, int len, int value) {
 int countPairs2(int* arr, int len, int value) {
     int count = 0;
     int rght = len - 1;
-    while (arr[rght] >= value)
+    while (arr[rght] > value)
         rght--;
     for (int i = 0; i < rght; ++i) {
         for (int j = rght; j > i; --j) {
@@ -30,9 +31,7 @@ int countPairs2(int* arr, int len, int value) {
             }
         }
     }
-    if (count)
-        return count;
-    return 0;
+    return countPairs3(arr, len, value);
 }
 
 int countPairs3(int* arr, int len, int value) {
@@ -50,15 +49,17 @@ int countPairs3(int* arr, int len, int value) {
                     count++;
                     p--;
                 }
-                p = middle + 1;
-                while (p < len && arr[p] == value) {
+                int p2 = middle + 1;
+                while (p2 < len && arr[p2] == value) {
                     count++;
-                    p++;
+                    p2++;
                 }
                 break;
-            } else if (arr[middle] > value) {
+            }
+            else if (arr[middle] > value) {
                 rght = middle - 1;
-            } else {
+            }
+            else {
                 lft = middle + 1;
             }
         }
